@@ -187,7 +187,7 @@ const getFromUnblockMusic = async (data, status, playNow) => {
     let response = await getMusicNumUrl(data.id);
     $message.info("正在获取Unblock歌曲Url, 已经输出在控制台");
     console.log(response);
-    let musicUrl = response?.url;
+    let musicUrl = response?.data?.url;
     console.log(musicUrl);
     $message.info("设置歌曲Url");
     if (!musicUrl) {
