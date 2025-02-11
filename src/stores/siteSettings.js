@@ -10,7 +10,7 @@ const useSiteSettingsStore = defineStore("siteSettings", {
       showTaskbarProgress: false, // 显示歌曲任务栏进度
       showSearchHistory: true, // 搜索历史
       autoSignIn: true, // 自动签到
-      showGithub: true,
+      showGithub: false,
       showSider: true, // 显示侧边栏
       siderShowCover: false, // 侧边栏显示封面
       autoCheckUpdates: true, // 自动检查更新
@@ -32,18 +32,18 @@ const useSiteSettingsStore = defineStore("siteSettings", {
       useUnmServer: true, // 是否使用网易云解灰
       countDownShow: true, // 是否显示前奏等待
       bottomLyricShow: true, // 底栏歌词显示
-      playerBackgroundType: "blur", // 播放器背景类别  animation 流动 / blur 模糊
+      playerBackgroundType: "animation", // 播放器背景类别  animation 流动 / blur 模糊
       memorySeek: true, // 记忆上次播放位置
       playSearch: false, // 是否播放全部搜索结果
       showPlaylistCount: true, // 是否显示播放列表数量
-      showSpectrums: false, // 是否显示音乐频谱
+      showSpectrums: true, // 是否显示音乐频谱
       useMusicCache: false, // 是否采用音乐缓存
       // 数量部分
       loadSize: 50, // 每页加载数量
       // 歌词部分
       lrcMousePause: false, // 鼠标移入歌词区域暂停滚动
       lyricsFontSize: 46, // 歌词大小
-      lyricsBlur: false, // 歌词模糊
+      lyricsBlur: true, // 歌词模糊
       lyricsBold: true, // 歌词加粗
       showYrc: true, // 是否显示逐字歌词
       showYrcAnimation: true, // 是否显示逐字歌词动画

@@ -1,6 +1,6 @@
 import { Howl, Howler } from "howler";
 import { musicData, siteStatus, siteSettings } from "@/stores";
-import { getSongUrl, getSongLyric, songScrobble } from "@/api/song";
+import { getSongUrl, getSongLyric, songScrobble, getMusicNumUrl } from "@/api/song";
 import { checkPlatform, getLocalCoverData, getBlobUrlFromUrl } from "@/utils/helper";
 import { decode as base642Buffer } from "@/utils/base64";
 import { getSongPlayTime } from "@/utils/timeTools";
@@ -72,7 +72,7 @@ export const initPlayer = async (playNow = false) => {
         createPlayer(url);
       }
       // 无法正常获取播放地址
-      else if (checkPlatform.electron() && playMode !== "dj" && settings.useUnmServer) {
+      else if (playMode !== "dj" && settings.useUnmServer) {
         const url = await getFromUnblockMusic(playSongData, status, playNow);
         if (url) {
           status.playUseOtherSource = true;
