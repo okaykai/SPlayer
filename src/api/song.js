@@ -37,6 +37,29 @@ export const getSongUrl = (id, level = "standard") => {
 };
 
 /**
+ * 网易云解灰
+ * @param {number} id - 要替换播放链接的音乐ID
+ */
+export const getMusicNumUrl = async (id) => {
+  // const server =
+  //   process.env.NODE_ENV === "development"
+  //     ? "kuwo,qq,pyncmd,kugou"
+  //     : "qq,pyncmd,kugou";
+  const server = "pyncmd";
+  const url = `${import.meta.env.VITE_UNM_API}match?id=${id}&server=${server}`;
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    return Promise.reject(new Error());
+  }
+  return await response.json();
+};
+
+/**
  * 获取指定音乐的歌词
  * @param {number} id - 要获取歌词的音乐ID
  */
