@@ -26,7 +26,7 @@
 
 ## 👀 Demo
 
-- [SPlayer](https://music.imsyy.top/)
+- [云音乐](https://player.focalors.ltd/)
 
 ## 🎉 功能
 
@@ -36,7 +36,7 @@
 - 🎨 封面主题色自适应
 - 🌚 Light / Dark 模式自动切换
 - 📁 本地歌曲管理及分类（建议先使用 [音乐标签](https://www.cnblogs.com/vinlxc/p/11347744.html) 进行匹配后再使用）
-- 🎵 **支持播放部分无版权歌曲（可能会与原曲不匹配，客户端独占功能）**
+- 🎵 **支持播放部分无版权歌曲（可能会与原曲不匹配）**
 - ⬇️ 下载歌曲（最高支持 Hi-Res）
 - ➕ 新建歌单及歌单编辑
 - ❤️ 收藏 / 取消收藏歌单或歌手
@@ -103,61 +103,23 @@
 
 </details>
 
-## 📦️ 获取
-
-### 稳定版
-
-通常情况下，可以在 [Releases](https://github.com/imsyy/SPlayer/releases) 中获取稳定版
-
-### 开发版
-
-可以通过 `GitHub Actions` 工作流获取最新的开发版，目前开发版仅提供 `Win` 版本
-
-[Dev Workflow](https://github.com/imsyy/SPlayer/actions/workflows/build.yml)
-
-## ⚙️ Docker 部署
-
-> 安装及配置 `Docker` 将不在此处说明，请自行解决
 
 ### 本地构建
 
 > 请尽量拉取最新分支后使用本地构建方式，在线部署的仓库可能更新不及时
 
-```bash
-# 构建
-docker build -t splayer .
-
-# 运行
-docker run -d --name SPlayer -p 7899:7899 splayer
-# 或使用 Docker Compose
-docker-compose up -d
-```
-
-### 在线部署
-
-```bash
-# 从 Docker Hub 拉取
-docker pull imsyy/splayer:latest
-# 从 GitHub ghcr 拉取
-docker pull ghcr.io/imsyy/splayer:latest
-
-# 运行
-docker run -d --name SPlayer -p 7899:7899 imsyy/splayer:latest
-```
-
-以上步骤成功后，将会在本地 [localhost:7899](http://localhost:7899/) 启动，如需更换端口，请自行修改命令行中的端口号
-
 ## ⚙️ Vercel 部署
 
 > 其他部署平台大致相同，在此不做说明
 
-1. 本程序依赖 [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi) 运行，请确保您已成功部署该项目，并成功取得在线访问地址
+1. 本程序依赖 [NeteaseCloudMusicApi](https://github.com/IamFurina/NeteaseCloudMusicApi) 运行以及[UNM-Server](https://act.focalors.ltd/unm-server)，请确保您已成功部署该项目，并成功取得在线访问地址
 2. 点击本仓库右上角的 `Fork`，复制本仓库到你的 `GitHub` 账号
 3. 复制 `/.env.example` 文件并重命名为 `/.env`
 4. 将 `.env` 文件中的 `RENDERER_VITE_SERVER_URL` 改为第一步得到的 API 地址
 
    ```js
-   RENDERER_VITE_SERVER_URL = "https://example.com";
+   RENDERER_VITE_SERVER_URL = "https://api.example.com";
+   VITE_UNM_API = "https://unm.example.com"
    ```
 
 5. 将 `Build and Output Settings` 中的 `Output Directory` 改为 `out/renderer`
@@ -223,6 +185,7 @@ docker run -d --name SPlayer -p 7899:7899 imsyy/splayer:latest
 
 特此感谢为本项目提供支持与灵感的项目
 
+- [原版SPlayer](https://github.com/imsyy/splayer)
 - [NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 - [YesPlayMusic](https://github.com/qier222/YesPlayMusic)
 - [UnblockNeteaseMusic](https://github.com/UnblockNeteaseMusic/server)
@@ -426,4 +389,4 @@ docker run -d --name SPlayer -p 7899:7899 imsyy/splayer:latest
 
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=imsyy/SPlayer&type=Date)](https://star-history.com/#imsyy/SPlayer&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=IamFurina/SPlayer&type=Date)](https://star-history.com/#IamFurina/SPlayer&Date)
