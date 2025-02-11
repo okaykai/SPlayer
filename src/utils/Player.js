@@ -166,14 +166,17 @@ const getNormalSongUrl = async (id, status, playNow) => {
 
 /**
  * 网易云解灰
- * @param {string} id - 歌曲 id
- * @returns {Promise<AudioPlayer|null>} - 创建播放器
+ * @param {object} data - 歌曲数据
+ * @param {object} status - 播放器状态
+ * @param {boolean} playNow - 是否立即播放
+ * @returns {Promise<?string>} - 解灰后的音乐播放地址，如果获取失败则返回 null
  */
 const getFromUnblockMusic = async (data, status, playNow) => {
   try {
     console.info("🎵 开始解灰：", data);
     // 调用解灰
-    let musicUrl = await electron.ipcRenderer.invoke("getMusicNumUrl", JSON.stringify(data));
+    let response = await getMusicNumUrl(data.id);
+    let musicUrl = response?.url;
     if (!musicUrl) {
       status.playLoading = false;
       return null;
@@ -653,25 +656,25 @@ const initMediaSession = async (data, cover, islocal, isDj) => {
       album: isDj ? "电台节目" : islocal ? data.album : data.album.name,
       artwork: islocal
         ? [
-            {
-              src: cover,
-              sizes: "1024x1024",
-            },
-          ]
+          {
+            src: cover,
+            sizes: "1024x1024",
+          },
+        ]
         : [
-            {
-              src: cover?.s,
-              sizes: "100x100",
-            },
-            {
-              src: cover?.m,
-              sizes: "300x300",
-            },
-            {
-              src: cover?.l,
-              sizes: "1024x1024",
-            },
-          ],
+          {
+            src: cover?.s,
+            sizes: "100x100",
+          },
+          {
+            src: cover?.m,
+            sizes: "300x300",
+          },
+          {
+            src: cover?.l,
+            sizes: "1024x1024",
+          },
+        ],
       length: data?.duration,
     });
     // 按键关联
