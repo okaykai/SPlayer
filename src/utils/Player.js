@@ -61,7 +61,6 @@ export const initPlayer = async (playNow = false) => {
       $message.info("不是本地歌曲");
       let songId = playSongData?.id;
       if (!songId) {
-        $message.warning("songId变量为空");
         return false;
       }
       // 若为电台模式
@@ -70,16 +69,13 @@ export const initPlayer = async (playNow = false) => {
       status.playLoading = true;
       // 获取播放地址
       const url = await getNormalSongUrl(songId, status, playNow);
-      $message.info("正在获取歌曲播放状态");
       // 正常播放地址
       if (url == null) {
         status.playUseOtherSource = false;
-        $message.info("歌曲链接获取正常, 正在获取播放链接");
         createPlayer(url);
       }
       // 无法正常获取播放地址
       else if (playMode !== "dj") {
-        $message.info("无法播放歌曲, 正在获取Unblock链接");
         const unblockUrl = await getFromUnblockMusic(playSongData, status, playNow);
         if (unblockUrl) {
           status.playUseOtherSource = true;
@@ -189,7 +185,7 @@ const getFromUnblockMusic = async (data, status, playNow) => {
     console.log(response);
     let musicUrl = response?.data?.url;
     console.log(musicUrl);
-    $message.info("设置歌曲Url");
+    $message.info("获取链接成功, 正在播放...");
     if (!musicUrl) {
       status.playLoading = false;
       return null;
