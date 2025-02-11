@@ -167,10 +167,10 @@ const canNotConnect = (error) => {
   console.error("网络连接错误：", error.message);
   $dialog.destroyAll();
   $dialog.error({
-    title: "网络连接错误",
-    content: "网络连接错误，请检查您当前的网络状态",
-    positiveText: "重试",
-    negativeText: "知道了",
+    title: "站点报错",
+    content: "如果是源代码出现问题, 请练习开发者解决; 如果是您的网络出现问题, 请检查您的网络适配器后重试",
+    positiveText: "刷新网页",
+    negativeText: "关闭弹窗",
     onPositiveClick: () => {
       location.reload();
     },
