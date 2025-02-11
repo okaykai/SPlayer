@@ -75,8 +75,8 @@ export const initPlayer = async (playNow = false) => {
       }
       // 无法正常获取播放地址
       else if (playMode !== "dj") {
-        const url = await getFromUnblockMusic(playSongData, status, playNow);
         $message.info("无法播放歌曲, 正在获取Unblock链接");
+        const url = await getFromUnblockMusic(playSongData, status, playNow);
         if (url) {
           status.playUseOtherSource = true;
           createPlayer(url);
@@ -162,6 +162,7 @@ const getNormalSongUrl = async (id, status, playNow) => {
     return url;
   } catch (error) {
     status.playLoading = false;
+    $message.error("获取歌曲地址出现错误, 请查看浏览器控制台");
     console.error("获取歌曲地址遇到错误：" + error);
     throw error;
   }
@@ -179,7 +180,9 @@ const getFromUnblockMusic = async (data, status, playNow) => {
     console.info("🎵 开始解灰：", data);
     // 调用解灰
     let response = await getMusicNumUrl(data.id);
+    $message.info("正在获取Unblock歌曲Url");
     let musicUrl = response?.url;
+    $message.info("设置歌曲Url");
     if (!musicUrl) {
       status.playLoading = false;
       return null;
