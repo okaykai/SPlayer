@@ -66,14 +66,17 @@ export const initPlayer = async (playNow = false) => {
       status.playLoading = true;
       // 获取播放地址
       const url = await getNormalSongUrl(songId, status, playNow);
+      $message.info("正在获取歌曲播放状态", { closable: true, duration: 0, });
       // 正常播放地址
       if (url) {
         status.playUseOtherSource = false;
+        $message.info("歌曲链接获取正常, 正在获取播放链接");
         createPlayer(url);
       }
       // 无法正常获取播放地址
       else if (playMode !== "dj") {
         const url = await getFromUnblockMusic(playSongData, status, playNow);
+        $message.info("无法播放歌曲, 正在获取Unblock链接", { closable: true, duration: 0, });
         if (url) {
           status.playUseOtherSource = true;
           createPlayer(url);
