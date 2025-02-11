@@ -60,7 +60,6 @@ export const initPlayer = async (playNow = false) => {
       // 获取歌曲 ID
       console.log("不是本地歌曲");
       let songId = playSongData?.id;
-      console.info(songID);
       if (!songId) {
         console.log("songId变量为空");
         return false;
@@ -188,8 +187,10 @@ const getFromUnblockMusic = async (data, status, playNow) => {
     console.info("🎵 开始解灰：", data);
     // 调用解灰
     let response = await getMusicNumUrl(data.id);
-    $message.info("正在获取Unblock歌曲Url");
+    $message.info("正在获取Unblock歌曲Url, 已经输出在控制台");
+    console.log(response);
     let musicUrl = response?.url;
+    console.log(musicUrl);
     $message.info("设置歌曲Url");
     if (!musicUrl) {
       status.playLoading = false;
