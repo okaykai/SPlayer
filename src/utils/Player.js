@@ -77,10 +77,12 @@ export const initPlayer = async (playNow = false) => {
       else if (playMode !== "dj") {
         $message.info("无法播放歌曲, 正在获取Unblock链接");
         const url = await getFromUnblockMusic(playSongData, status, playNow);
+        console.log(url);
         if (url) {
           status.playUseOtherSource = true;
           createPlayer(url);
         } else {
+          $message.warning("获取失败, 跳过操作");
           isPlayEnd = true;
           status.playUseOtherSource = false;
           // 是否为最后一首
