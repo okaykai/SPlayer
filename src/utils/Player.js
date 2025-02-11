@@ -72,7 +72,7 @@ export const initPlayer = async (playNow = false) => {
         createPlayer(url);
       }
       // 无法正常获取播放地址
-      else if (playMode !== "dj" && settings.useUnmServer) {
+      else if (playMode !== "dj") {
         const url = await getFromUnblockMusic(playSongData, status, playNow);
         if (url) {
           status.playUseOtherSource = true;
@@ -180,20 +180,6 @@ const getFromUnblockMusic = async (data, status, playNow) => {
     if (!musicUrl) {
       status.playLoading = false;
       return null;
-    }
-    // 处理 bili 音源
-    if (musicUrl.includes("bilivideo.com")) {
-      const result = await electron.ipcRenderer.invoke("getBiliUrlData", musicUrl);
-      // 将获取的数据转换为 ArrayBuffer
-      const buffer = base642Buffer(result);
-      // 创建一个新的 Blob，并生成相应的对象 URL
-      const source = URL.createObjectURL(new Blob([buffer]));
-      // 如果之前的 musicUrl 存在，则销毁旧的对象 URL
-      if (musicUrl) {
-        URL.revokeObjectURL(musicUrl);
-      }
-      // 更新 musicUrl 为新的对象 URL
-      musicUrl = source;
     }
     if (playNow) status.playState = true;
     status.playLoading = false;
