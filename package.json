@@ -4,9 +4,9 @@
   "description": "A minimalist music player",
   "main": "./out/main/index.js",
   "author": "imsyy",
-  "home": "https://imsyy.top",
-  "github": "https://github.com/imsyy/SPlayer",
-  "repository": "github:imsyy/SPlayer",
+  "home": "https://focalors.ltd",
+  "github": "https://github.com/Focalors-Ltd/SPlayer",
+  "repository": "github:Focalors-Ltd/SPlayer",
   "license": "AGPL-3.0",
   "license-file": "LICENSE",
   "engines": {

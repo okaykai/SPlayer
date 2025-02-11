@@ -162,7 +162,7 @@ const showAnnouncements = () => {
   }
 };
 
-// 网络无法连接
+// 站点源代码出现错误 or 网络出现问题
 const canNotConnect = (error) => {
   console.error("网络连接错误：", error.message);
   $dialog.destroyAll();
