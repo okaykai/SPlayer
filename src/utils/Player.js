@@ -80,10 +80,10 @@ export const initPlayer = async (playNow = false) => {
       // 无法正常获取播放地址
       else if (playMode !== "dj") {
         $message.info("无法播放歌曲, 正在获取Unblock链接");
-        const url = await getFromUnblockMusic(data, status, playNow);
-        if (url) {
+        const unblockUrl = await getFromUnblockMusic(playSongData, status, playNow);
+        if (unblockUrl) {
           status.playUseOtherSource = true;
-          createPlayer(url);
+          createPlayer(unblockUrl);
         } else {
           $message.warning("获取失败, 跳过操作");
           isPlayEnd = true;
